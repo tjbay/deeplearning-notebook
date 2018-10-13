@@ -36,7 +36,15 @@ $ git --version
 > git version 2.19.1
 ```
 
-2. Make a free account on Github.
+2. Make a free account on Github. Configure local machine to use those credentials.
+
+```bash
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+
+
+
 3. Clone this repository by typing `git clone https://github.com/tjbay/deeplearning-notebook.git` at the command line. This will create a folder called `deeplearning-notebook` on your computer, inside whatever directory you are in when you run the command.
 
 ```bash
@@ -45,6 +53,14 @@ $ ls -l
 ```
 
 After running these commands you should see a list of files, including one named `Dockerfile`.
+
+```bash
+git pull
+```
+
+This will update you to the most recent version of the repository. If you just installed, it won't do anything
+
+
 
 #### Docker
 Docker is one solution to a common software development issue. When developing software on different platforms we often run into **environment** issues. By that I mean that if I write code on Mac OS X in Python on a laptop and then want to run it on a production Linux machine it might not produce exactly the same results or might not even work at all due to a different OS, Python or package versions, or environment variables. With Docker, we can specify exactly what files and software we want to be copied into or installed in our container with a **Dockerfile**. Our code will be run from within the container in an identical setup to the other people in the study group.
