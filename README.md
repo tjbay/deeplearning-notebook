@@ -26,8 +26,38 @@ Why is it a study group and not a class? There are two main reasons. 1. I won't 
 
 ### Installation and Setup
 
-#### Git
-We'll use Git, a version control system, along with Github, a popular online Git storage system. The code repository for this study group will live on Github and you'll get updates every class through Git/Github.
+#### Git and Github
+We'll use Git, a version control system, along with Github, a popular online Git storage system. The code repository for this study group will live on Github and you'll get updates every class through Git/Github. We need to setup git on your machine to work with Github.
+
+1. Make a [free account on Github](https://github.com/).
+
+1. Install git. If you are on Mac OS X, you already have Git installed. From the command line run `git --version`. If you get a version number in return, you are good to go. If you need to install Git or want to upgrade to the latest version see [this page](https://git-scm.com/).
+
+```bash
+$ git --version
+> git version 2.19.1
+```
+
+1. Set up git to use your Github credentials.
+```bash
+$ git config --global user.name "Your Name"
+$ git config --global user.name
+> "Your Name"
+$ git config --global user.email "you@example.com"
+$ git config --global user.email 
+> "you@example.com"
+```
+
+1. Authenticate. 
+
+
+2. Configure your local machine to use those credentials. You can find directions [here](https://help.github.com/articles/set-up-git/). You should install/update git, 
+
+
+
+
+
+
 
 1. Install git. If you are on Mac OS X, you already have Git installed. From the command line run `git --version`. If you get a version number in return, you are good to go. If you need to install Git or want to upgrade to the latest version see [this page](https://git-scm.com/).
 
