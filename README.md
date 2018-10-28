@@ -12,7 +12,7 @@ Why is it a study group and not a class? There are two main reasons. 1. I won't 
 
 
 ### What you'll learn
-1. Basics of Git and Gitlab
+1. Basics of Git and Github
 1. Basics of Docker containers
 1. Jupyter notebooks
 1. Deep learning topics:
