@@ -1,5 +1,6 @@
 # deeplearning-notebook
 
+<<<<<<< HEAD
 ## Welcome to the **[SF Big Analytics](https://www.meetup.com/SF-Big-Analytics/)** Deep Learning guided study group.
 This repo contains setup and installation instructions and (eventually) code for the examples presented in class. For more details see the Meetup [website](https://www.meetup.com/SF-Big-Analytics/). The workshop is limited to 20 attendees.
 
