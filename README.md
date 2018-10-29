@@ -78,7 +78,7 @@ $ docker run -p 8888:8888 --mount source=deeplearning,target=/home/jovyan/saved/
 ```
 
 #### Run Jupyter notebook
-In the output of the previous command, you'll see a token. Open the [Jupyter notebook](localhost:8888) in your browser and paste in the token.
+In the output of the previous command, you'll see a token. Open the [Jupyter notebook](http://localhost:8888) in your browser and paste in the token.
 In the `notebooks` directory, open the `0.-deep-learning-test-notebook.ipynb` directory. Run the notebook. If it's error-free, you are ready for the class. The last cell will display an image of a 4 digit number. Email the number to tj.bay@ask.com to reserve a spot in the class. Once you are finished you can type `control-c` in the terminal window to stop the Docker container.
 
 
