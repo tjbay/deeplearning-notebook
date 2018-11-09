@@ -34,7 +34,7 @@ $ ls -l
 After running these commands you should see a list of files, including one named `Dockerfile`.
 1. Update. This won't do much now, but run this before each session to get all the changes and updates to the Github repo.
 ```bash
-git pull
+$ git pull
 ```
 
 #### Docker
@@ -46,7 +46,8 @@ Docker is one solution to a common software development issue. When developing s
 $ docker --version
 > Docker version 18.06.1-ce, build e68fc7a
 ```
-1. Set up persistent storage. One weakness of Docker is that changes in a running container are ephemeral. We'll need to set up an [external volume](https://docs.docker.com/engine/reference/commandline/volume/) that will save your work.  
+#### Set up persistent storage
+1. One weakness of Docker is that changes in a running container are ephemeral. We'll need to set up an [external volume](https://docs.docker.com/engine/reference/commandline/volume/) that will save your work.  
 
 ```bash
 $ docker volume create deeplearning
@@ -61,7 +62,7 @@ $ docker volume inspect deeplearning
 >        "Options": {},
 >        "Scope": "local"
 >    }
->]
+> ]
 ```
 
 #### Build 
@@ -79,7 +80,12 @@ $ docker run -p 8888:8888 --mount source=deeplearning,target=/home/jovyan/saved/
 
 #### Run Jupyter notebook
 In the output of the previous command, you'll see a token. Open the [Jupyter notebook](http://localhost:8888) in your browser and paste in the token.
-In the `notebooks` directory, open the `0.-deep-learning-test-notebook.ipynb` directory. Run the notebook. If it's error-free, you are ready for the class. The last cell will display an image of a 4 digit number. Email the number to tj.bay@ask.com to reserve a spot in the class. Once you are finished you can type `control-c` in the terminal window to stop the Docker container.
+
+In the `notebooks` directory, open the `0.-deep-learning-test-notebook.ipynb` file. Run the notebook. If it's error-free, you are ready for the class. 
+
+I've gotten feedback from a few people that sometimes the Jupyter notebook will fail to run even if everything has been installed correctly. I haven't been able to repreduce or diagnose the issue. Please try to restart the kernel by clicking `Kernel` and then selecting `Restart and run all`.
+
+The last cell will display an image of a 4 digit number. Email the number to tj.bay@ask.com to reserve a spot in the class. Once you are finished you can type `control-c` in the terminal window to stop the Docker container.
 
 
 
