@@ -46,36 +46,20 @@ Docker is one solution to a common software development issue. When developing s
 $ docker --version
 > Docker version 18.06.1-ce, build e68fc7a
 ```
-#### Set up persistent storage
-1. One weakness of Docker is that changes in a running container are ephemeral. We'll need to set up an [external volume](https://docs.docker.com/engine/reference/commandline/volume/) that will save your work.  
-
-```bash
-$ docker volume create deeplearning
-$ docker volume inspect deeplearning
-> [
->    {
->        "CreatedAt": "2018-10-14T16:48:02Z",
->        "Driver": "local",
->        "Labels": {},
->        "Mountpoint": "/var/lib/docker/volumes/deeplearning/_data",
->        "Name": "deeplearning",
->        "Options": {},
->        "Scope": "local"
->    }
-> ]
-```
+#### Docker compose
+1. We'll use Docker compose to build, configure, and run our containers. The configuration is in the `docker-compose.yaml` file.
 
 #### Build 
 The following command will create a Docker image by following the script in the Dockerfile. This currently inherits a lot of software from an image created by the Jupyter Project which contains packages for scientific computing with Python and adds the deep learning software we'll be using. See the reference [here](https://docs.docker.com/engine/reference/commandline/build/) for more information. This will take a few minutes to run, depending on your machine and internet connection.
 
 ```bash
-$ docker build -t tf .
+$ docker-compose build
 ```
 
 #### Start the container
 See the documentation for the [run](https://docs.docker.com/engine/reference/commandline/run/) command. This will start a Docker container from the image we just created. Notably, it starts a Jupyter notebook with Python 3 and all the software we need. This command mounts the volume we create above and it will be the `saved` directory in your notebook. Your work and data should be saved here.
 ```bash
-$ docker run -p 8888:8888 --mount source=deeplearning,target=/home/jovyan/saved/  tf
+$ docker-compose up
 ```
 
 #### Run Jupyter notebook
@@ -85,8 +69,13 @@ In the `notebooks` directory, open the `0.-deep-learning-test-notebook.ipynb` fi
 
 I've gotten feedback from a few people that sometimes the Jupyter notebook will fail to run even if everything has been installed correctly. I haven't been able to repreduce or diagnose the issue. Please try to restart the kernel by clicking `Kernel` and then selecting `Restart and run all`.
 
-The last cell will display an image of a 4 digit number. Email the number to tj.bay@ask.com to reserve a spot in the class. Once you are finished you can type `control-c` in the terminal window to stop the Docker container.
+The last cell will display an image of a 4 digit number. Email the number to tj.bay@ask.com to reserve a spot in the class.
 
+#### Clean up
+To end a session type `control-c` in the terminal window to stop the Docker container. To clean up the session use:
+```bash
+$ docker-compose down
+```
 
 
 
