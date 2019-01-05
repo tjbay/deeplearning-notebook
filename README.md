@@ -31,51 +31,55 @@ Then follow either the [HTTPS or the SSH method to authenticate with Github](htt
 $ cd deeplearning-notebook
 $ ls -l
 ```
-After running these commands you should see a list of files, including one named `Dockerfile`.
-1. Update. This won't do much now, but run this before each session to get all the changes and updates to the Github repo.
+After running these commands you should see a list of files, including one named `dl-env.yaml`.
+1. Update. This won't do much now, but run this before each session to pull the latest updates to your copy of the repository.
 ```bash
 $ git pull
 ```
 
-#### Docker
-Docker is one solution to a common software development issue. When developing software on different platforms we often run into **environment** issues. By that I mean that if I write code on Mac OS X in Python on a laptop and then want to run it on a production Linux machine it might not produce exactly the same results or might not even work at all due to a different OS, Python or package versions, or environment variables. With Docker, we can specify exactly what files and software we want to be copied into or installed in our container with a **Dockerfile**. Our code will be run from within the container in an identical setup to the other people in the study group.
+#### Anaconda 
+We'll use the popular Python distribution Anaconda, and it's package manager conda to install and update the code we need. Follow the [installation instructions for your OS here](https://docs.anaconda.com/anaconda/install/). I'd also suggest [verifying your installation](https://docs.anaconda.com/anaconda/install/verify-install/) to make sure everything is working. For macOS in particular, there is a version of Python that comes preinstalled and we want to make sure that we are using the Anaconda Python.
 
-1. Download and install the free [Docker Community Edition](https://www.docker.com/products/docker-desktop). You will have to create a free account. 
-1. After installing and starting Docker (you'll have to give it your machine password), run the following from the command line.
-```bash
-$ docker --version
-> Docker version 18.06.1-ce, build e68fc7a
-```
-#### Docker compose
-1. We'll use Docker compose to build, configure, and run our containers. The configuration is in the `docker-compose.yaml` file.
-
-#### Build 
-The following command will create a Docker image by following the script in the Dockerfile. This currently inherits a lot of software from an image created by the Jupyter Project which contains packages for scientific computing with Python and adds the deep learning software we'll be using. See the reference [here](https://docs.docker.com/engine/reference/commandline/build/) for more information. This will take a few minutes to run, depending on your machine and internet connection.
+Conda also comes with an environment manager. Using conda environments we can make sure we install exactly the same versions of Python and the various deep learning packages. This replaces the previous use of Docker! To see what will be installed in the deeplearning environment:
 
 ```bash
-$ docker-compose build
+$ cat dl-env.yaml
+> name: deeplearning
+> channels:
+>   - defaults
+>   - conda-forge
+> dependencies:
+>   - python=3.6
+>   - pip
+>   - pip:
+>     - tensorflow
+>     - keras
+>     - jupyter
+>     - pandas
+>     - numpy
+>     - pillow
+>     - opencv-contrib-python
+>     - scikit-learn
+>     - matplotlib
+>     - bokeh
 ```
 
-#### Start the container
-See the documentation for the [run](https://docs.docker.com/engine/reference/commandline/run/) command. This will start a Docker container from the image we just created. Notably, it starts a Jupyter notebook with Python 3 and all the software we need. This command mounts the volume we create above and it will be the `saved` directory in your notebook. Your work and data should be saved here.
+We also install some packages with pip, which is Python's package manager. Some packages work better with pip than conda, or have more recent versions.
+
+To create the environment:
 ```bash
-$ docker-compose up
+$ conda env create -f ~/dl-env.yaml
+$ source activate deeplearning
 ```
+
+The `source activate` command allows you to switch between environments. This doesn't changes files, but does change Python versions and installed packages. Learn more about [conda environments](https://conda.io/docs/user-guide/tasks/manage-environments.html).
+
+Your command prompt should now start with `(deeplearning)`, to indicate which environment is active. You'll need to activate this environment each time you open a new terminal window.
 
 #### Run Jupyter notebook
-In the output of the previous command, you'll see a token. Open the [Jupyter notebook](http://localhost:8888) in your browser and paste in the token.
-
-In the `notebooks` directory, open the `0.-deep-learning-test-notebook.ipynb` file. Run the notebook. If it's error-free, you are ready for the class. 
-
-I've gotten feedback from a few people that sometimes the Jupyter notebook will fail to run even if everything has been installed correctly. I haven't been able to repreduce or diagnose the issue. Please try to restart the kernel by clicking `Kernel` and then selecting `Restart and run all`.
-
-The last cell will display an image of a 4 digit number. Email the number to tj.bay@ask.com to reserve a spot in the class.
-
-#### Clean up
-To end a session type `control-c` in the terminal window to stop the Docker container. To clean up the session use:
+Run the following command, after which a Jupyter notebook should open in your browser.
 ```bash
-$ docker-compose down
+$ jupyter notebook
 ```
-
 
 
