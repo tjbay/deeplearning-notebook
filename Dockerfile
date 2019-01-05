@@ -12,5 +12,6 @@ RUN conda install --quiet --yes \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
 
+RUN pip install opencv-contrib-python
 COPY notebooks/ /home/jovyan/notebooks/
 
